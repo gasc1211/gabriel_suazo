@@ -1,0 +1,9 @@
+---
+const { title, content, route } = Astro.props;
+---
+<a href=`/${route}`>
+  <div class="p-4 bg-blue-500 rounded-xl text-white m-2">
+    <h3 class="font-extrabold mb-2">{ title }</h3>
+    <p class="font-light">{ content }</p>
+  </div>
+</a>
