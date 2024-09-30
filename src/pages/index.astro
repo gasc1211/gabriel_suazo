@@ -1,16 +1,41 @@
 ---
+import Main from "../layouts/Main.astro"
+import Card from "../components/Card.astro"
+import Navbar from "../components/Navbar.astro"
+import { string } from "astro:schema"
+import { getCollection } from "astro:content";
 
+interface Project {
+	slug: string;
+	data: {
+		title: string;
+		description: string;
+	};
+};
+
+const projects: Project[] = await getCollection('projects');
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Main title="🧑‍💻 Gabriel Suazo">
+	<article class="">
+		<h2 class="text-2xl">Hi there! I'm Gabriel Suazo</h2>
+		<p>
+			Hello I'm Gabriel, a software developer and Computational Systems Engineer student at UNAH.
+			Passionate for copmuter related stuff and videogames. Often known as *gasc1211* online.
+			
+			In addition to school, I also seek for other opportunities to expand my knowledge and improve
+			my skills. I have attended to hackathons, contests and events in robotics, software development
+			and more. Additionally I regularly take online courses from time to time to keep up to date with
+			technologies I find interesting.
+		</p>
+		
+	</article>
+	<div class="flex">
+		<Card title="My Cool site 🏕️" content="This is the start of my really cool site!" />
+		{
+			projects.map(() => {
+				
+			})
+		}
+	</div>
+</Main>
