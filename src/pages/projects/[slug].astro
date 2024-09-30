@@ -1,5 +1,33 @@
 ---
+import type { GetStaticPaths } from "astro";
+import { getCollection } from "astro:content";
+import Project from "../../layouts/Project.astro";
+
+export const getStaticPaths = (async () => {
+  const projectEntries = await getCollection('projects');
+  return projectEntries.map(entry => ({
+    params: { slug: entry.slug }, props: {entry}
+  }))
+}) satisfies GetStaticPaths;
+
+interface props {
+  entry: {
+    slug: string;
+    data: {
+      title: string;
+      description: string;
+      icon: string;
+    }
+  };
+  render: () => Promise<{Content: any; headings: any[]}>
+}
+
+const { entry } = Astro.props;
+const { Content, headings } = await entry.render();
 ---
-<div>
-  Hello Blog!
-</div>
+<Project title={entry.data.title}>
+  <div>
+    <h1>{entry.data.title}</h1>
+    <Content />
+  </div>
+</Project>
