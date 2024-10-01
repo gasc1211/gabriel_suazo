@@ -17,7 +17,7 @@ const projects: Project[] = await getCollection('projects');
 
 <Main title="🧑‍💻 <Gabriel_Suazo/>" showImage=true>
 	<section class="mt-24">
-		<h2 class="text-xl text-secondary text-center m-4">About me</h2>
+		<!-- <h2 class="text-xl text-secondary text-center m-4">About me</h2> -->
 		<div class="flex">
 			<div class="mx-auto flex">
 				<img src="/images/profile.jpg" alt="Profile" class="w-24 h-24 border-primary border-2 rounded-md inline m-4">
@@ -34,13 +34,12 @@ const projects: Project[] = await getCollection('projects');
 			In addition to my academic endeavors, I actively seek opportunities to expand my knowledge and enhance my skills. I have participated in hackathons, robotics competitions, and software development events, where I’ve had the chance to tackle real-world challenges and collaborate with other professionals in the field. I also regularly enroll in online courses to stay updated on emerging technologies and industry trends. This continuous commitment to learning and innovation enables me to quickly adapt to new environments and contribute creative, practical solutions to any project.
 		</p>
 	</section>
-	<section>
+	<!-- <section>
 		<h2 class="text-xl text-center m-4 text-secondary">Projects</h2>
 		<p class="p-6">
 			Most of my projects and experiences come from weekend projects with friends, classwork, and occasionally from other initiatives I've found interesting.
 		</p>
 		<div class="flex">
-			<!-- <Card title="My Cool site 🏕️" content="This is the start of my really cool site!" /> -->
 			{
 				projects.map((project) => <Card 
 					title={ project.data.title } 
@@ -50,5 +49,5 @@ const projects: Project[] = await getCollection('projects');
 				/>)
 			}
 		</div>
-	</section>
+	</section> -->
 </Main>

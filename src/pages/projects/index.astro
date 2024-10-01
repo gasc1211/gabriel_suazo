@@ -1,0 +1,36 @@
+---
+import Main from "../../layouts/Main.astro"
+import Card from "../../components/Card.astro"
+import Link from "../../components/Link.astro";
+import { getCollection } from "astro:content";
+
+interface Project {
+	slug: string;
+	data: {
+		title: string;
+		description: string;
+	};
+};
+
+const projects: Project[] = await getCollection('projects');
+---
+
+<Main title="🧑‍💻 <Gabriel_Suazo/>" showImage=false>
+	<section>
+		<h2 class="text-xl text-center m-4 text-secondary">Projects</h2>
+		<p class="p-6">
+			Most of my projects and experiences come from weekend projects with friends, classwork, and occasionally from other initiatives I've found interesting.
+		</p>
+		<div class="flex">
+			<!-- <Card title="My Cool site 🏕️" content="This is the start of my really cool site!" /> -->
+			{
+				projects.map((project) => <Card 
+					title={ project.data.title } 
+					content={ project.data.description } 
+					href={ "projects/" + project.slug }
+					className=""
+				/>)
+			}
+		</div>
+	</section>
+</Main>
