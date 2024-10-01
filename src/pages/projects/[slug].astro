@@ -32,13 +32,23 @@ const username = urlData.pop();
 
 ---
 <Project title={entry.data.title} headings={headings}>
-  <div>
-    <h1>{entry.data.title}</h1>
+  <div class="prose">
     <div class="m-4">
+      <h1>{entry.data.title}</h1>
       <Link href={entry.data.repoUrl}>
         <img class="portfolio-pin" src=`https://github-readme-stats.vercel.app/api/pin/?username=${username}&repo=${repo}&theme=tokyonight`>
       </Link>
     </div>
     <Content />
   </div>
+  
+  <style is:global>
+    .prose h1 { @apply text-2xl font-bold text-highlight mb-4 mt-8; }
+    .prose h2 { @apply text-xl font-semibold text-secondary mb-4 mt-8; }
+    .prose h3 { @apply text-lg font-semibold text-secondary mb-3 mt-6; }
+    .prose p { @apply mb-4 text-primary; }
+    .prose ul { @apply list-disc list-inside mb-4; }
+    .prose ol { @apply list-decimal list-inside mb-4; }
+    .prose li { @apply mb-2; }
+  </style>
 </Project>
