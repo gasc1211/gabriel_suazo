@@ -1,0 +1,12 @@
+---
+import Main from "./Main.astro";
+import Navigation from "../components/Navigation.astro";
+
+const { pageTitle, headings } = Astro.props;
+---
+<Main pageTitle={pageTitle}>
+  <Navigation headings={headings} />
+  <main class="my-24 ml-72">
+    <slot/>
+  </main>
+</Main>

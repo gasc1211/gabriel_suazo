@@ -2,6 +2,7 @@
 import type { GetStaticPaths } from "astro";
 import { getCollection } from "astro:content";
 import Project from "../../layouts/Project.astro";
+import Link from "../../components/Link.astro";
 
 export const getStaticPaths = (async () => {
   const projectEntries = await getCollection('projects');
@@ -16,7 +17,7 @@ interface props {
     data: {
       title: string;
       description: string;
-      icon: string;
+      repoUrl: string;
     }
   };
   render: () => Promise<{Content: any; headings: any[]}>
@@ -24,10 +25,20 @@ interface props {
 
 const { entry } = Astro.props;
 const { Content, headings } = await entry.render();
+
+let urlData = entry.data.repoUrl.split("/");
+const repo = urlData.pop();
+const username = urlData.pop();
+
 ---
-<Project title={entry.data.title}>
+<Project title={entry.data.title} headings={headings}>
   <div>
     <h1>{entry.data.title}</h1>
+    <div class="m-4">
+      <Link href={entry.data.repoUrl}>
+        <img class="portfolio-pin" src=`https://github-readme-stats.vercel.app/api/pin/?username=${username}&repo=${repo}&theme=tokyonight`>
+      </Link>
+    </div>
     <Content />
   </div>
 </Project>
