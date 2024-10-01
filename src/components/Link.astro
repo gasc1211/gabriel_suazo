@@ -1,0 +1,4 @@
+---
+const { href, content, target } = Astro.props;
+---
+<a class="hover:text-highlight hover:font-semibold transition-colors duration-75" href={ href } target={ target }>{ !content ? <slot/> : content }</a>

@@ -1,7 +1,14 @@
 ---
 import Navbar from "../components/Navbar.astro";
 import Navigation from "../components/Navigation.astro";
-const { pageTitle } = Astro.props;
+import Footer from "../components/Footer.astro";
+
+interface props {
+  pageTitle: string;
+  showImage: boolean;
+};
+
+const { pageTitle, showImage } = Astro.props;
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -13,11 +20,11 @@ const { pageTitle } = Astro.props;
   </style>
   <title>{ pageTitle }</title>
 </head>
-<body class="bg-blue-950 text-white">
-  <Navbar/>
-  <main class="m-4 grid grid-flow-row grid-cols-2">
-    <Navigation />
+<body class="bg-background text-primary font-mono flex flex-col h-screen justify-around">
+  <Navbar showImage={showImage}/>
+  <main class="my-auto mx-36 pb-4">
     <slot/>
   </main>
+  <Footer />
 </body>
 </html>

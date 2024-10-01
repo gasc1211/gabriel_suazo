@@ -1,9 +1,9 @@
 ---
-const { title, content, route } = Astro.props;
+const { title, content, href, className } = Astro.props;
 ---
-<a href=`/${route}`>
-  <div class="p-4 bg-blue-500 rounded-xl text-white m-2">
+<a href={href}>
+  <div class=`p-3 bg-highlight rounded-xl text-background m-2 ${className}`>
     <h3 class="font-extrabold mb-2">{ title }</h3>
-    <p class="font-light">{ content }</p>
+    <p class="">{ content }</p>
   </div>
 </a>

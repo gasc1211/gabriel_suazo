@@ -1,8 +1,7 @@
 ---
 import Main from "../layouts/Main.astro"
 import Card from "../components/Card.astro"
-import Navbar from "../components/Navbar.astro"
-import { string } from "astro:schema"
+import Link from "../components/Link.astro";
 import { getCollection } from "astro:content";
 
 interface Project {
@@ -16,26 +15,40 @@ interface Project {
 const projects: Project[] = await getCollection('projects');
 ---
 
-<Main title="🧑‍💻 Gabriel Suazo">
-	<article class="">
-		<h2 class="text-2xl">Hi there! I'm Gabriel Suazo</h2>
-		<p>
-			Hello I'm Gabriel, a software developer and Computational Systems Engineer student at UNAH.
-			Passionate for copmuter related stuff and videogames. Often known as *gasc1211* online.
-			
-			In addition to school, I also seek for other opportunities to expand my knowledge and improve
-			my skills. I have attended to hackathons, contests and events in robotics, software development
-			and more. Additionally I regularly take online courses from time to time to keep up to date with
-			technologies I find interesting.
+<Main title="🧑‍💻 <Gabriel_Suazo/>" showImage=true>
+	<section class="mt-24">
+		<h2 class="text-xl text-secondary text-center m-4">About me</h2>
+		<div class="flex">
+			<div class="mx-auto flex">
+				<img src="/images/profile.jpg" alt="Profile" class="w-24 h-24 border-primary border-2 rounded-md inline m-4">
+				<div class="inline mt-10 mb-5 ml-auto">
+					<h3 class="text-lg">Hi there! I'm Gabriel Suazo...</h3>
+					<h4 class="text-sm text-secondary">Software Developer and Technology Enthusiast</h4>
+				</div>
+			</div>
+		</div>
+		<p class="p-6">
+			Hello I'm Gabriel, a software developer and Computational Systems Engineer student at <Link href="https://unah.edu.hn" target="_blank">UNAH</Link>.
+			Passionate for copmuter related stuff and videogames.
+			<br><br>
+			In addition to my academic endeavors, I actively seek opportunities to expand my knowledge and enhance my skills. I have participated in hackathons, robotics competitions, and software development events, where I’ve had the chance to tackle real-world challenges and collaborate with other professionals in the field. I also regularly enroll in online courses to stay updated on emerging technologies and industry trends. This continuous commitment to learning and innovation enables me to quickly adapt to new environments and contribute creative, practical solutions to any project.
 		</p>
-		
-	</article>
-	<div class="flex">
-		<Card title="My Cool site 🏕️" content="This is the start of my really cool site!" />
-		{
-			projects.map(() => {
-				
-			})
-		}
-	</div>
+	</section>
+	<section>
+		<h2 class="text-xl text-center m-4 text-secondary">Projects</h2>
+		<p class="p-6">
+			Most of my projects and experiences come from weekend projects with friends, classwork, and occasionally from other initiatives I've found interesting.
+		</p>
+		<div class="flex">
+			<!-- <Card title="My Cool site 🏕️" content="This is the start of my really cool site!" /> -->
+			{
+				projects.map((project) => <Card 
+					title={ project.data.title } 
+					content={ project.data.description } 
+					href={ "projects/" + project.slug }
+					className=""
+				/>)
+			}
+		</div>
+	</section>
 </Main>
